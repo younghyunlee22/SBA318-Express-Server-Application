@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('header') %>
+  </head>
+
+  <body>
+    <h1 class="plannerTitle">
+      <img id="tomato-icon" src="/favicon-32x32.png" alt="tomato-icon" />
+      Get inspired by this task list!
+    </h1>
+    <ol>
+      <% options.forEach(each => { %>
+      <li>Task: <%= each.task %> | Duration: <%= each.duration %> minutes</li>
+      <% }); %>
+    </ol>
+  </body>
+</html>
