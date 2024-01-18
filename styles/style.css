@@ -11,3 +11,19 @@ body {
   font-family: "Montserrat", sans-serif;
   padding: 25px 50px;
 }
+
+ol {
+  list-style-type: none;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0;
+}
+
+.mock-task {
+  color: #333;
+  font-size: 16px;
+  font-family: "Montserrat";
+  background: linear-gradient(to bottom left, #f7e8fc, #ffd8ae);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0.5rem;
+}

@@ -11,7 +11,10 @@
     </h1>
     <ol>
       <% options.forEach(each => { %>
-      <li>Task: <%= each.task %> | Duration: <%= each.duration %> minutes</li>
+      <li class="mock-task">
+        <%= each.id %>. Task: <%= each.task %> | Duration: <%= each.duration %>
+        minutes
+      </li>
       <% }); %>
     </ol>
   </body>
