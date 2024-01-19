@@ -10,8 +10,8 @@ app.set("views", "./views");
 app.use(express.static("./styles"));
 app.use(express.static(path.join(__dirname, "images")));
 
-const mockTodoRouter = require("./routes/peekTodos");
-app.use("/peekTodos", mockTodoRouter);
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Middleware 1.
 const logger = (req, res, next) => {
@@ -22,6 +22,20 @@ app.use(logger);
 
 app.get("/", (req, res) => {
   res.render("index", { title: "Pomodoro Planner" });
+});
+
+const taskRouter = require("./routes/tasks");
+app.use("/tasks", taskRouter);
+
+const feedbackRouter = require("./routes/feedback");
+app.use("/feedback", feedbackRouter);
+
+const mockTodoRouter = require("./routes/peekTasks");
+app.use("/peektasks", mockTodoRouter);
+
+app.use((err, req, res, next) => {
+  console.error("Error: ", err);
+  next();
 });
 
 app.listen(PORT, () => {

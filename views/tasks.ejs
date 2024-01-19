@@ -1,0 +1,18 @@
+<form action="#" method="POST" name="pomodoro-form" id="pomodoro-form">
+  <input
+    type="number"
+    name="duration"
+    size="7"
+    placeholder="Duration in minutes"
+  />
+  <input
+    type="text"
+    name="task"
+    size="30"
+    placeholder="Enter a single task to work on"
+    onclick="clearInput()"
+  />
+  <input type="submit" value="Add Task" />
+</form>
+
+<% function clearInput() { %> <% myForm.task.value = ""; %> <% } %>

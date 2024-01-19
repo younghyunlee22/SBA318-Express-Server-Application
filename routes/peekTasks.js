@@ -102,10 +102,14 @@ const mockTaskdata = [
 ];
 
 router.get("/", (req, res) => {
-  res.render("peekTodos", {
-    title: "Peek sample tasks!",
-    options: mockTaskdata,
-  });
+  try {
+    res.render("peekTasks", {
+      title: "Peek sample tasks!",
+      options: mockTaskdata,
+    });
+  } catch (err) {
+    console.log("Failed to get peektasks", err);
+  }
 });
 
 module.exports = router;

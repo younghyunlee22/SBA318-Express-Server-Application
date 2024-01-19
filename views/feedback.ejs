@@ -5,6 +5,13 @@
   </head>
 
   <body>
-    <%- include('body') %>
+    <% if (options.length > 0) { %> <% options.forEach((each) => { %>
+    <p>
+      Title: <%= each.title %> <br />
+      Content: <%= each.content %>
+    </p>
+    <% }); %> <% } else { %>
+    <p>No feedback submitted</p>
+    <% } %>
   </body>
 </html>
