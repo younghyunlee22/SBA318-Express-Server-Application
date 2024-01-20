@@ -1,35 +1,38 @@
 const express = require("express");
 
 const router = express.Router();
+const bodyParser = require("body-parser");
 
-// /tasks
-// /tasks/new
+router.use(bodyParser.urlencoded({ extended: true }));
 
-const taskArr = [];
+let taskArr = [{ id: 1, duration: "22", task: "learn javascript" }];
 
-router.route("/").get((req, res) => {
+router.get("/", (req, res) => {
   try {
-    res.render("tasks", { title: "Tasks" });
+    console.log("Line 15 taskArr", taskArr);
+    res.json(taskArr);
   } catch (err) {
-    console.log("Getting tasks page failed", err);
+    console.log("Failed to get task lists", err);
   }
 });
 
 router.post("/new", (req, res) => {
   try {
-    const duration = req.body.duration;
-    const task = req.body.task;
+    console.log("Reqeust body?", req.body);
+
+    const { duration, task } = req.body;
 
     const newTaskObj = {
       id: taskArr.length + 1,
-      duration: duration,
-      task: task,
+      duration,
+      task,
     };
     console.log(newTaskObj);
     taskArr.push(newTaskObj);
-    res.render("tasks");
+    console.log("line 35", taskArr);
+    res.redirect("/");
   } catch (err) {
-    console.log("Failed to creat a task", err);
+    console.log("Line 39 Failed to create a task", err);
   }
 });
 

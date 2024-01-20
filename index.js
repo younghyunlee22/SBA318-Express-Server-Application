@@ -14,15 +14,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Middleware 1.
-const logger = (req, res, next) => {
+
+app.use((req, res, next) => {
   console.log(`Request was made at: ${req.method} ${req.url}`);
   next();
-};
-app.use(logger);
+});
 
 app.get("/", (req, res) => {
   res.render("index", { title: "Pomodoro Planner" });
 });
+
+const apiTaskRouter = require("./routes/apis");
+app.use("/api", apiTaskRouter);
 
 const taskRouter = require("./routes/tasks");
 app.use("/tasks", taskRouter);
@@ -33,9 +36,10 @@ app.use("/feedback", feedbackRouter);
 const mockTodoRouter = require("./routes/peekTasks");
 app.use("/peektasks", mockTodoRouter);
 
+// Error-handling middleware
 app.use((err, req, res, next) => {
-  console.error("Error: ", err);
-  next();
+  res.status(err.status || 500);
+  res.json({ error: err.message });
 });
 
 app.listen(PORT, () => {

@@ -13,19 +13,19 @@ router.get("/", (req, res) => {
 });
 router.get("/new", (req, res) => {
   try {
-    res.send(`
+    res.send(`<div style = "margin-left: 20px; margin-top:40px; font-family: Monospace, verdana, sans-serif">
     <nav>
-  <a href="/">Home</a> | <a href="/peektasks">Get Inspiration</a> |
-  <a href="/feedback">Your Feedback</a>
-</nav>
-    <h2 style = "font-family: verdana, sans-serif;">Send us your feedback on the website</h2>
-    <form action="/feedback" method="POST" class="feedback-form">
+      <a href="/">Home</a> | <a href="/peektasks">Get Inspiration</a> |
+      <a href="/feedback">Your Feedback</a>
+    </nav>
+    <h2>Send us your feedback on the website</h2>
+    <form action="/feedback" method="POST" class="feedback-form"">
       Title: <input type="text" name="title" size="50"/> <br /> <br />
       Content: <br /> 
       <textarea name="content" cols="50" rows="10" /> </textarea><br />
       <br />
       <input type="submit"/>
-    </>
+    </> </div>
   `);
   } catch (err) {
     console.log("Getting feedback page failed", err);

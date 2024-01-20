@@ -1,18 +1,43 @@
-<form action="#" method="POST" name="pomodoro-form" id="pomodoro-form">
-  <input
-    type="number"
-    name="duration"
-    size="7"
-    placeholder="Duration in minutes"
-  />
-  <input
-    type="text"
-    name="task"
-    size="30"
-    placeholder="Enter a single task to work on"
-    onclick="clearInput()"
-  />
-  <input type="submit" value="Add Task" />
-</form>
+<div id="input-section">
+  <form action="#">
+    <label for="username">Username: </label>
 
-<% function clearInput() { %> <% myForm.task.value = ""; %> <% } %>
+    <input id="username" type="text" minlength="2" maxlength="15" required />
+    <button id="username-button" class="button">Enter</button>
+  </form>
+  <br />
+
+  <form
+    action="/api/tasks/new"
+    method="POST"
+    name="pomodoro-form"
+    id="pomodoro-form"
+  >
+    <input
+      type="number"
+      name="duration"
+      size="7"
+      placeholder="Duration in minutes"
+    />
+    <input
+      type="text"
+      name="task"
+      size="30"
+      placeholder="Enter a single task to work on"
+      onclick="clearInput()"
+    />
+    <input type="submit" value="Add Task" />
+  </form>
+</div>
+<h2 class="title">Your plan for today:</h2>
+<div id="parent-list" class="pomodoro-list">
+  <ol id="child-ol" class="task-list"></ol>
+  <div id="child-list"></div>
+</div>
+
+<script>
+  const myForm = document.getElementById("pomodoro-form");
+  function clearInput() {
+    myForm.task.value = "";
+  }
+</script>
