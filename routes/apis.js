@@ -79,8 +79,41 @@ router
 
 router.get("/tasks", (req, res) => {
   try {
-    todos = todos.sort((a, b) => a.userId - b.userId);
-    res.json(todos);
+    // query parameters for data filtering
+    const { userId, id, completed } = req.query;
+    if (userId !== undefined || id !== undefined || completed !== undefined) {
+      let filteredTasks = [...todos];
+
+      if (userId !== undefined) {
+        const targetUserId = parseInt(userId);
+        filteredTasks = filteredTasks.filter(
+          (user) => user.userId === targetUserId
+        );
+        // nested if for additional filtering through the use of query parameters
+        if (id !== undefined) {
+          const targetTaskId = parseInt(id);
+          filteredTasks = filteredTasks.filter(
+            (task) => task.id === targetTaskId
+          );
+        }
+      }
+
+      if (id !== undefined) {
+        const targetTaskId = parseInt(id);
+        filteredTasks = filteredTasks.filter(
+          (task) => task.id === targetTaskId
+        );
+      }
+      if (completed !== undefined) {
+        const isCompleted = completed.toLowerCase() === "true";
+        filteredTasks = filteredTasks.filter(
+          (task) => task.completed === isCompleted
+        );
+      }
+      res.json(filteredTasks);
+    } else {
+      res.json(todos);
+    }
   } catch (err) {
     console.log("Failed to get the task list", err);
   }
