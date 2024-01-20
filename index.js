@@ -27,9 +27,6 @@ app.get("/", (req, res) => {
 const apiTaskRouter = require("./routes/apis");
 app.use("/api", apiTaskRouter);
 
-const taskRouter = require("./routes/tasks");
-app.use("/tasks", taskRouter);
-
 const feedbackRouter = require("./routes/feedback");
 app.use("/feedback", feedbackRouter);
 
