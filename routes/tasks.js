@@ -1,9 +1,8 @@
+// decided not to continue to develop this
+
 const express = require("express");
 
 const router = express.Router();
-const bodyParser = require("body-parser");
-
-router.use(bodyParser.urlencoded({ extended: true }));
 
 let taskArr = [{ id: 1, duration: "22", task: "learn javascript" }];
 

@@ -17,14 +17,39 @@ const validateTask = (req, res, next) => {
   }
 };
 
-router.get("/users", (req, res) => {
-  try {
-    users = users.sort((a, b) => a.userId - b.userId);
-    res.json(users);
-  } catch (err) {
-    console.log("Failed to get the user list", err);
-  }
-});
+router
+  .route("/users")
+  .get((req, res) => {
+    try {
+      users = users.sort((a, b) => a.userId - b.userId);
+      res.json(users);
+    } catch (err) {
+      console.log("Failed to get the user list", err);
+    }
+  })
+  .post((req, res) => {
+    try {
+      const { username, firstName } = req.body;
+      if (username !== undefined) {
+        const result = users.find((user) => user.username == username);
+        if (!result) {
+          if (firstName !== undefined) {
+            const newUserObj = {
+              userId: users.length + 1,
+              username,
+              firstName,
+            };
+            users.push(newUserObj);
+            res.json(newUserObj);
+          }
+        } else {
+          res.send("Username is already taken");
+        }
+      }
+    } catch (err) {
+      console.log("Failed to create a user", err);
+    }
+  });
 
 router
   .route("/users/:id")

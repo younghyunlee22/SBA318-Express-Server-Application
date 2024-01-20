@@ -1,12 +1,29 @@
 <div id="wrapper" class="wrapper">
-  <h1 class="plannerTitle">
+  <h1 class="title">
     <img id="tomato-icon" src="/favicon-32x32.png" alt="tomato-icon" />
-    Pomodoro Planner
+    Express Server Application
   </h1>
-  <p class="instruction">
-    Make a pomodoro set(4 tasks). <br />
-    Each task will be followed by a 5-minute break. <br />
-    A 20-minute break will be added after a set.<br />
-    Make more sets if you want. <br />
-  </p>
+  <pre>
+  - GET /
+    - GET  /api
+    - GET  /api/users
+    - POST /api/users
+      - GET    /api/users/:id
+      - PATCH  /api/users/:id
+      - DELETE /api/users/:id
+    - GET  /api/tasks
+            * Query parameters
+              ?userId=&lt;VALUE&gt; (between 1 and 50)
+              ?id=&lt;VALUE&gt; (between 1 and 150)
+              ?userId=&lt;VALUE&gt;&amp;id=&lt;VALUE&gt;
+              ?completed=&lt;true or false&gt;
+      - GET    /api/tasks/:id
+      - PATCH  /api/tasks/:id
+      - DELETE /api/tasks/:id
+    - POST /api/tasks/new
+    - GET  /peektasks
+    - GET  /feedback/new (A form will get sent by res.send())
+    - POST /feedback (The route to which the form will make a POST request)
+    - GET  /feedback (Getting the submitted form(s))
+  </pre>
 </div>
