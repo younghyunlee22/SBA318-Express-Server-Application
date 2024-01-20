@@ -15,7 +15,7 @@ router.get("/new", (req, res) => {
   try {
     res.send(`<div style = "margin-left: 20px; margin-top:40px; font-family: Monospace, verdana, sans-serif">
     <nav>
-      <a href="/">Home</a> | <a href="/peektasks">Get Inspiration</a> |
+      <a href="/">Home</a> | <a href="/api/tasks">SBA Rest API</a> | <a href="/peektasks">Get Inspiration</a> |
       <a href="/feedback">Your Feedback</a>
     </nav>
     <h2>Send us your feedback on the website</h2>
