@@ -9,6 +9,7 @@ router.get("/", (req, res) => {
     res.render("feedback", { title: "Feedback", options: feedbackArr });
   } catch (err) {
     console.log("Failed to load the feedback page", err);
+    res.status(500).json({ success: false, error: err.message });
   }
 });
 router.get("/new", (req, res) => {
@@ -29,6 +30,7 @@ router.get("/new", (req, res) => {
   `);
   } catch (err) {
     console.log("Getting feedback page failed", err);
+    res.status(500).json({ success: false, error: err.message });
   }
 });
 

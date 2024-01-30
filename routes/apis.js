@@ -25,6 +25,7 @@ router
       res.json(users);
     } catch (err) {
       console.log("Failed to get the user list", err);
+      res.status(500).json({ success: false, error: err.message });
     }
   })
   .post((req, res) => {
@@ -48,6 +49,7 @@ router
       }
     } catch (err) {
       console.log("Failed to create a user", err);
+      res.status(500).json({ success: false, error: err.message });
     }
   });
 
@@ -66,6 +68,7 @@ router
       }
     } catch (err) {
       console.log("Failed to find user by id", err);
+      res.status(500).json({ success: false, error: err.message });
     }
   })
   .patch((req, res) => {
@@ -84,6 +87,7 @@ router
       else res.json(user);
     } catch (err) {
       console.log("Failed to update user", err);
+      res.status(500).json({ success: false, error: err.message });
     }
   })
   .delete((req, res) => {
@@ -99,6 +103,7 @@ router
       else res.json(user);
     } catch (err) {
       console.log("Failed to delete user", err);
+      res.status(500).json({ success: false, error: err.message });
     }
   });
 
@@ -141,6 +146,7 @@ router.get("/tasks", (req, res) => {
     }
   } catch (err) {
     console.log("Failed to get the task list", err);
+    res.status(500).json({ success: false, error: err.message });
   }
 });
 
@@ -157,6 +163,7 @@ router
       }
     } catch (err) {
       console.log("Failed to find task by id", err);
+      res.status(500).json({ success: false, error: err.message });
     }
   })
   .patch(validateTask, (req, res) => {
@@ -175,6 +182,7 @@ router
       else res.json(result);
     } catch (err) {
       console.log("Failed to update task", err);
+      res.status(500).json({ success: false, error: err.message });
     }
   })
   .delete((req, res) => {
@@ -190,6 +198,7 @@ router
       else res.json(result);
     } catch (err) {
       console.log("Failed to delete task", err);
+      res.status(500).json({ success: false, error: err.message });
     }
   });
 
@@ -207,7 +216,8 @@ router.post("/tasks/new", validateTask, (req, res) => {
     todos.push(newTaskObj);
     res.redirect("/api/tasks");
   } catch (err) {
-    console.log("Line 152 Failed to create a task", err);
+    console.log("Failed to create a task", err);
+    res.status(500).json({ success: false, error: err.message });
   }
 });
 

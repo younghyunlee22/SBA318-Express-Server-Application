@@ -33,8 +33,13 @@ app.use("/feedback", feedbackRouter);
 const mockTodoRouter = require("./routes/peekTasks");
 app.use("/peektasks", mockTodoRouter);
 
+app.use((req, res, next) => {
+  next(error(404, "Resource Not Found"));
+});
+
 // Error-handling middleware
 app.use((err, req, res, next) => {
+  console.log("Error-handling middleware caught the error");
   res.status(err.status || 500);
   res.json({ error: err.message });
 });

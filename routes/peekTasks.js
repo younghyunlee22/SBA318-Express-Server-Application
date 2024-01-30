@@ -12,6 +12,7 @@ router.get("/", (req, res) => {
     });
   } catch (err) {
     console.log("Failed to get peektasks", err);
+    res.status(500).json({ success: false, error: err.message });
   }
 });
 
